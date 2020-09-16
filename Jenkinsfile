@@ -52,16 +52,17 @@ pipeline {
 
             steps {
                     echo 'Here would be deployment of test application'
-                script {
 /*
+                script {
+
                     def dockerImageRevision = "${env.GIT_COMMIT.substring(0,6)}"
                     def appimage = docker.build registry + ":${dockerImageRevision}"
                     docker.withRegistry( '', credentialsRegistry ) {
                        appimage.push()
                        appimage.push('latest')
                     }
-*/
                 }
+*/
             }
         }
         stage('Deploy code to production env') {

@@ -7,7 +7,7 @@ pipeline {
             }
             steps {
                 echo 'Here would be some tests'
-                sh 'printenv'
+
             }
         }
         stage('Deploy code to test env') {
@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                     echo 'Here would be deployment of test application'
-                    sh 'printenv'
+
             }
         }
        stage('Deploy code to production env') {
@@ -24,8 +24,8 @@ pipeline {
                 expression { env.BRANCH_NAME == 'master' }
             }
             steps {
-                    echo 'Here would be deployment of production'
-                    sh 'printenv'
+                    echo 'Here would be deployment of production env'
+
             }
         }
     }

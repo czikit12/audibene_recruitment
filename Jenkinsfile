@@ -35,7 +35,7 @@ pipeline {
             steps {
                     echo 'Here would be deployment of test application'
                 script {
-                    dockerImageRevision = "${env.GIT_COMMIT}.substring(0,7)"
+                    dockerImageRevision = "${env.GIT_COMMIT.substring(0,7)}"
                     println "${dockerImageRevision}"
                 }
             }

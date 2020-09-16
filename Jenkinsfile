@@ -1,10 +1,14 @@
 pipeline {
     agent any
-    sh 'printenv'
     stages {
+        stage('Test') {
+        steps {
+            echo 'TEST COMMANDS'
+            sh 'printenv'
+        }
         stage('Test PR') {
             when {
-                expression { env.BRANCH_NAME == 'PR*' }
+                expression { env.BRANCH_NAME == '**' }
             }
             steps {
                 echo 'Here would be some tests'

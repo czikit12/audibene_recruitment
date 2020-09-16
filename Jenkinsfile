@@ -28,9 +28,10 @@ pipeline {
             environment {
                registryCredential = 'my_registry_crednetials'
             }
-            when {
+/*            when {
                 expression { env.BRANCH_NAME == 'develop' }
             }
+ */
             steps {
                     echo 'Here would be deployment of test application'
                 script {

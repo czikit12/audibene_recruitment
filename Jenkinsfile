@@ -1,5 +1,6 @@
 node {
-  
+  echo 'Pulling...' + env.BRANCH_NAME
+  checkout scm
   def workspace = pwd()
   if (env.BRANCH_NAME == 'master') {
     stage ('Some Stage 1 for master') {

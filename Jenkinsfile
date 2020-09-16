@@ -15,7 +15,7 @@ pipeline {
                 expression { env.BRANCH_NAME == 'develop' }
             }
             steps {
-                    echo 'Here would be deployment'
+                    echo 'Here would be deployment of test application'
                     sh 'printenv'
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 expression { env.BRANCH_NAME == 'master' }
             }
             steps {
-                    echo 'Here would be deployment'
+                    echo 'Here would be deployment of production'
                     sh 'printenv'
             }
         }

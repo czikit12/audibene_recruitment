@@ -19,7 +19,7 @@ pipeline {
                 sh 'cd ${WORKSPACE}/src/java_app | mvn package'
 */
                 script {
-                    def developRev = sh "git log -1 --pretty=format:\"%h\" origin/develop"
+                    def developRev = sh 'git log -1 --pretty=format:"%h"'
                     println(developRev)
                 }
             }

@@ -1,5 +1,4 @@
 node {
-  checkout scm
   def workspace = pwd()
 
   if (env.BRANCH_NAME == 'master') {

@@ -59,8 +59,8 @@ pipeline {
                     docker.withRegistry( '', credentialsRegistry ) {
                        appimage.push()
                        appimage.push('latest')
-*/
                     }
+*/
                 }
             }
         }

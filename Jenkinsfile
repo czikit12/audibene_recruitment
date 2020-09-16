@@ -18,15 +18,6 @@ pipeline {
                 sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'
                 sh 'cd ${WORKSPACE}/src/java_app | mvn package'
 */
-                script {
-                    // The below will clone your repo and will be checked out to master branch by default.
-                    git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
-                    // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
-                    sh "ls -lart ./*"
-                    // List all branches in your repo.
-                    def developRev = sh 'git log -1 --pretty=format:"%h"'
-                    println(developRev)
-                }
             }
         }
         stage('Test pull requests') {
@@ -79,7 +70,13 @@ pipeline {
                 expression { env.BRANCH_NAME == 'master' }
             }
             steps {
-                    echo 'Here would be deployment of production env'
+                echo 'Here would be deployment of production env'
+                script {
+
+                git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
+                def developRev = sh 'git log -1 --pretty=format:"%h"'
+                println("${developRev}")
+                }
 
             }
         }

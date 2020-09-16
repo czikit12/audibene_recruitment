@@ -2,9 +2,10 @@ pipeline {
     agent any
     stages {
         stage('Test') {
-        steps {
-            echo 'TEST COMMANDS'
-            sh 'printenv'
+            steps {
+                echo 'TEST COMMANDS'
+                sh 'printenv'
+            }
         }
         stage('Test PR') {
             when {
@@ -24,7 +25,7 @@ pipeline {
 
             }
         }
-       stage('Deploy code to production env') {
+        stage('Deploy code to production env') {
             when {
                 expression { env.BRANCH_NAME == 'master' }
             }

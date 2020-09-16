@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Test PR') {
             when {
-                expression { env.BRANCH_NAME == '**' }
+                expression { env.BRANCH_NAME =~ 'PR.*' }
             }
             steps {
                 echo 'Here would be some tests'

@@ -19,6 +19,14 @@ pipeline {
                 sh 'cd ${WORKSPACE}/src/java_app | mvn package'
 */
                 script {
+                    // The below will clone your repo and will be checked out to master branch by default.
+                    git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
+                    // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
+                    sh "ls -lart ./*"
+                    // List all branches in your repo.
+                    sh "git branch -a"
+                    // Checkout to a specific branch in your repo.
+                    sh "git checkout branchname"
                     def developRev = sh 'git log -1 --pretty=format:"%h"'
                     println(developRev)
                 }
@@ -55,6 +63,7 @@ pipeline {
 
             steps {
                     echo 'Here would be deployment of test application'
+                    sh 'printenv'
 /*
                 script {
 

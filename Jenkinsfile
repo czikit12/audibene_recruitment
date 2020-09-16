@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test PR') {
             when {
-                expression { env.BRANCH_NAME == 'master' }
+                expression { env.BRANCH_NAME == 'PR*' }
             }
             steps {
                 echo 'Here would be some tests'
@@ -13,6 +13,15 @@ pipeline {
         stage('Deploy code to test env') {
             when {
                 expression { env.BRANCH_NAME == 'develop' }
+            }
+            steps {
+                    echo 'Here would be deployment'
+                    sh 'printenv'
+            }
+        }
+       stage('Deploy code to production env') {
+            when {
+                expression { env.BRANCH_NAME == 'master' }
             }
             steps {
                     echo 'Here would be deployment'

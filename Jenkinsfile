@@ -4,29 +4,42 @@ pipeline {
        registry = "my_refistry/some_name"
     }
     stages {
- //       stage('Test') {
- //           steps {
- //               echo 'TEST COMMANDSs'
- //           }
- //       }
-        stage('Test PR') {
- /*           agent {
-              docker {
-                   image 'nodejs'
-               }
+        stage('Build application') {
+/*
+            agent {
+                docker {
+                    image 'maven:3.6-openjdk-15'
+                }
+            }
+*/
+            steps {
+                sh 'mkdir -p ${WORKSPACE}/src/java_app'
+                sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'
+                sh 'cd ${WORKSPACE}/src/java_app | mvn package'
+            }
+        }
+        stage('Test pull requests') {
+ /*
+            agent {
+                  docker {
+                       image 'maven:3.6-openjdk-15'
+                   }
             }
  */
             when {
                 expression { env.BRANCH_NAME =~ 'PR.*' }
             }
             steps {
-                echo 'Here would be some tests'
-                sh 'printenv'
+/*
+                sh 'mkdir -p ${WORKSPACE}/src/java_app'
+                sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'
+                sh 'cd ${WORKSPACE}/src/java_app | mvn test'
+*/
             }
         }
         stage('Deploy code to test env') {
             environment {
-               registryCredential = 'my_registry_crednetials'
+               credentialsRegistry = 'my_registry_crednetials'
             }
 /*            when {
                 expression { env.BRANCH_NAME == 'develop' }
@@ -35,8 +48,14 @@ pipeline {
             steps {
                     echo 'Here would be deployment of test application'
                 script {
-                    dockerImageRevision = "${env.GIT_COMMIT.substring(0,7)}"
-                    println "${dockerImageRevision}"
+/*
+                    def dockerImageRevision = "${env.GIT_COMMIT.substring(0,9)}"
+                    def appimage = docker.build registry + ":${dockerImageRevision}"
+                    docker.withRegistry( '', credentialsRegistry ) {
+                       appimage.push()
+                       appimage.push('latest')
+*/
+                   }
                 }
             }
         }

@@ -4,7 +4,7 @@ node {
 
   if (env.BRANCH_NAME == 'master') {
     stage ('Some Stage 1 for master') {
-      sh 'echo "master"'
+      sh 'echo "master of disaster"'
     }
     stage ('Another Stage for Master') {
       sh 'echo "second stage of master"'

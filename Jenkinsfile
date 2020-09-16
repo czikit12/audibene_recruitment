@@ -1,5 +1,5 @@
 node {
-  echo 'Pulling...' + env.BRANCH_NAME
+  echo 'Pulling...' + BRANCH_NAME
   checkout scm
   def workspace = pwd()
   if (env.BRANCH_NAME == 'master') {

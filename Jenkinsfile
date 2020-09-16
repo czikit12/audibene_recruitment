@@ -1,25 +1,26 @@
-node {
-  echo 'Pulling...' + env.BRANCH_NAME
-  def workspace = pwd()
-  if (env.BRANCH_NAME == 'master') {
-    stage ('Some Stage 1 for master') {
-      sh 'echo "master of disasteasdasdrsssad"'
+pipeline {
+    agent any
     }
-    stage ('Another Stage for Master') {
-      sh 'echo "second stage of master"'
-    }
-  }
 
-  else if (env.BRANCH_NAME == 'stage') {
-    stage ('Some stage branch step') {
-      sh 'do something'
-    }
-    stage ('Deploy to stage target') {
-      sh 'do something else'
-    }
-  }
+    stages {
+        stage('Test PR') {
+            when {
+                expression { env.BRANCH_NAME == 'master' }
+            }
+            steps {
+                echo 'Here would be some tests'
+                sh 'printenv'
+            }
+   }
 
-  else {
-    sh 'echo "Branch not applicable to Jenkins... do nothing"'
-  }
+        stage('Deploy code to test env') {
+            when {
+                expression { env.BRANCH_NAME == 'develop' }
+            }
+        steps {
+                echo 'Here would be deployment'
+                sh 'printenv'
+            }
+        }
+    }
 }

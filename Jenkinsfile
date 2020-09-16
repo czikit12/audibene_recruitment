@@ -22,7 +22,7 @@ pipeline {
                     def developRev = sh 'git log -1 --pretty=format:"%h" develop'
                 }
             }
-        
+        }
         stage('Test pull requests') {
  /*
             agent {

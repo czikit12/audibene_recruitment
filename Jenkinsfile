@@ -9,7 +9,7 @@ pipeline {
                 echo 'Here would be some tests'
                 sh 'printenv'
             }
-
+        }
         stage('Deploy code to test env') {
             when {
                 expression { env.BRANCH_NAME == 'develop' }

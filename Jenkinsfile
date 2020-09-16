@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    echo "${env.BRANCH_NAME}"
     stages {
         stage('Test PR') {
             when {

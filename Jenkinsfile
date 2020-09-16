@@ -13,6 +13,7 @@ pipeline {
             }
 */
             steps {
+                echo 'Here would be application build'
 /*
                 sh 'mkdir -p ${WORKSPACE}/src/java_app'
                 sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'
@@ -54,7 +55,6 @@ pipeline {
                     sh 'printenv'
 /*
                 script {
-
                     def dockerImageRevision = "${env.GIT_COMMIT.substring(0,6)}"
                     def appimage = docker.build registry + ":${dockerImageRevision}"
                     docker.withRegistry( '', credentialsRegistry ) {
@@ -72,10 +72,9 @@ pipeline {
             steps {
                 echo 'Here would be deployment of production env'
                 script {
-
-                git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
-                def developRev = sh 'git log -1 --pretty=format:"%h"'
-                println("${developRev}")
+                    git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
+                    def developRev = sh 'git log -1 --pretty=format:"%h" develop'
+                    println("${developRev}")
                 }
 
             }

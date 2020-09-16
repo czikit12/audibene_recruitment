@@ -35,6 +35,8 @@ pipeline {
                 expression { env.BRANCH_NAME =~ 'PR.*' }
             }
             steps {
+                echo 'Here would be tested pull request'
+
 /*
                 sh 'mkdir -p ${WORKSPACE}/src/java_app'
                 sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'

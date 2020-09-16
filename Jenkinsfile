@@ -13,7 +13,7 @@ pipeline {
             }
 */
             steps {
-*/
+/*
                 sh 'mkdir -p ${WORKSPACE}/src/java_app'
                 sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/src/java_app'
                 sh 'cd ${WORKSPACE}/src/java_app | mvn package'

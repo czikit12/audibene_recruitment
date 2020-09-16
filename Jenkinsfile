@@ -4,7 +4,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'TEST COMMANDSs'
-                sh 'printenv'
+
             }
         }
         stage('Test PR') {
@@ -13,6 +13,7 @@ pipeline {
             }
             steps {
                 echo 'Here would be some tests'
+                sh 'printenv'
             }
         }
         stage('Deploy code to test env') {

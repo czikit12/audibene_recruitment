@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    echo "${env.BRANCH_NAME}"
+    sh 'printenv'
     stages {
         stage('Test PR') {
             when {

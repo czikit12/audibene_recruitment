@@ -1,13 +1,21 @@
 pipeline {
     agent any
+    environment {
+       registry = "my_refistry/some_name"
+    }
     stages {
-        stage('Test') {
-            steps {
-                echo 'TEST COMMANDSs'
-
-            }
-        }
+ //       stage('Test') {
+ //           steps {
+ //               echo 'TEST COMMANDSs'
+ //           }
+ //       }
         stage('Test PR') {
+ /*           agent {
+              docker {
+                   image 'nodejs'
+               }
+            }
+ */
             when {
                 expression { env.BRANCH_NAME =~ 'PR.*' }
             }
@@ -17,12 +25,18 @@ pipeline {
             }
         }
         stage('Deploy code to test env') {
+            environment {
+               registryCredential = 'my_registry_crednetials'
+            }
             when {
                 expression { env.BRANCH_NAME == 'develop' }
             }
             steps {
                     echo 'Here would be deployment of test application'
-
+                script {
+                    dockerImageRevision = ${env.GIT_COMMIT}.substring(0,7)
+                    println "${dockerImageRevision}"
+                }
             }
         }
         stage('Deploy code to production env') {

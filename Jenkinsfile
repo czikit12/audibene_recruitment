@@ -2,6 +2,7 @@ pipeline {
     agent none
     environment {
        registry = "my_registry/some_name"
+       credentialsRegistry = 'my_registry_crednetials'
     }
     stages {
         stage('Build application') {
@@ -34,9 +35,6 @@ pipeline {
             }
         }
         stage('Build docker image and deploy code to test environment') {
-            environment {
-               credentialsRegistry = 'my_registry_crednetials'
-            }
             when {
                 expression { env.BRANCH_NAME == 'develop' }
             }

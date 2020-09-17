@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
        registry = "my_registry/some_name"
        credentialsRegistry = 'my_registry_crednetials'

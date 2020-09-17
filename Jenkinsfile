@@ -33,14 +33,13 @@ pipeline {
                 sh 'cd ${WORKSPACE}/src/java_app | mvn test'
             }
         }
-        stage('Deploy code to test environment') {
+        stage('Build docker image and deploy code to test environment') {
             environment {
                credentialsRegistry = 'my_registry_crednetials'
             }
             when {
                 expression { env.BRANCH_NAME == 'develop' }
             }
-
             steps {
                 script {
                     def dockerImageRevision = "${env.GIT_COMMIT.substring(0,6)}"
@@ -49,23 +48,22 @@ pipeline {
                        appimage.push()
                        appimage.push('latest')
                     }
-                    sh 'sed -i "s/tagVersion/${dockerImageRevision}/g" deploy_file.yml'
-                    sh 'kubectl apply -f .'
+                    sh 'sed -i "s/tagVersion/${dockerImageRevision}/g" ${WORKSPACE}/kubernetes/deploy_file.yml'
+                    sh 'kubectl apply -f ${WORKSPACE}/kubernetes/. --namespace=test'
                 }
             }
         }
-        stage('Deploy code to production env') {
+        stage('Deploy code to production') {
             when {
                 expression { env.BRANCH_NAME == 'master' }
             }
             steps {
-                echo 'Here would be deployment of production env'
                 script {
                     git credentialsId: 'github', url: 'https://github.com/czikit12/audibene_recruitment'
                     sh "git checkout origin/develop"
                     def developRev = sh(returnStdout: true, script: 'git log -1 --pretty=format:"%h"')
-                    sh 'sed -i "s/tagVersion/${developRev}/g" deploy_file.yml'
-                    sh 'kubectl apply -f .'
+                    sh 'sed -i "s/tagVersion/${developRev}/g" ${WORKSPACE}/kubernetes/deploy_file.yml'
+                    sh 'kubectl apply -f ${WORKSPACE}/kubernetes/. --namespace=prod'
                 }
             }
         }

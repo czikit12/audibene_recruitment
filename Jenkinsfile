@@ -18,7 +18,7 @@ pipeline {
                 sh 'cd ${WORKSPACE}/src/java_app | mvn package'
             }
         }
-        stage('Test pull requests') {
+        stage('Test code on pull requests') {
             agent {
                   docker {
                        image 'maven:3.6-openjdk-15'

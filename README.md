@@ -87,8 +87,18 @@
         * Docker Pipeline (docker-workflow): 1.24
     
    * ##App
-    *
+    * Simple java application with deployment.yml and service.yml (Load balancer)
     
    * ##Job
-    * 
-   * ##Pipeline
+    * Multibranch pieline job  
+    ** COnfigured Branch source as GiTHub with discover all branches and discover pull requests from forks and origin,  
+       exceptions: do not trigger feature branches automatically (Still it is possible manually)
+   * ##Pipeline  
+    * Declarative pipeline  
+   * ##Github repo
+    * Configured webhook for jenkins
+    * Configured policy, not possible to commit/merge to develop branch without pull request and only possible merge  
+      from develop to master with pull request
+    
+    
+    

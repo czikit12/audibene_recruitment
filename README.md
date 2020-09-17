@@ -86,20 +86,21 @@
         * Docker plugin (docker-plugin): 1.2.0
         * Docker Pipeline (docker-workflow): 1.24
     
-   * ##App
+   * ##App  
     * Simple java application with deployment.yml and service.yml (Load balancer)
     
-   * ##Job
+   * ##Job  
     * Multibranch pieline job  
     ** Configured Branch source as GiTHub with discover all branches and discover pull requests from forks and origin,  
        exceptions: do not trigger feature branches automatically (Still it is possible manually)
     ** Discard old items (more than 10)
-   * ##Pipeline  
+   * ##Pipeline   
     * Declarative pipeline  
-   * ##Github repo
+   * ##Github repository    
     * Configured webhook for jenkins
     * Configured policy, not possible to commit/merge to develop branch without pull request and only possible merge  
-      from develop to master with pull request
+      from develop to master with pull request  
+    * All the files in main directorey including Jenkinsfile, ynml files in folder kubernetes
     
     
     

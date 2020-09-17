@@ -98,9 +98,9 @@
     * Declarative pipeline  
    * ##Github repository    
     * Configured webhook for jenkins  
-    * Configured policy, not possible to commit/merge to develop branch without pull request and only possible merge  
+    * Configured policy, not possible to commit/merge to develop branch without pull request and only possible to merge  
       from develop to master with pull request  
-    * All the files in main directorey including Jenkinsfile, ynml files in folder kubernetes
+    * All the files in main directory including Jenkinsfile, ynml files in folder kubernetes
     
     
     

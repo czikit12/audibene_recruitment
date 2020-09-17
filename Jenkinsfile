@@ -44,7 +44,7 @@ pipeline {
                 script {
                     def dockerImageRevision = "${env.GIT_COMMIT.substring(0,6)}"
                     def appimage = docker.build registry + ":${dockerImageRevision}"
-                    docker.withRegistry( '', credentialsRegistry ) {
+                    docker.withRegistry( registry, credentialsRegistry ) {
                        appimage.push()
                        appimage.push('latest')
                     }

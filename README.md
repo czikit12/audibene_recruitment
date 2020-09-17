@@ -91,8 +91,9 @@
     
    * ##Job
     * Multibranch pieline job  
-    ** COnfigured Branch source as GiTHub with discover all branches and discover pull requests from forks and origin,  
+    ** Configured Branch source as GiTHub with discover all branches and discover pull requests from forks and origin,  
        exceptions: do not trigger feature branches automatically (Still it is possible manually)
+    ** Discard old items (more than 10)
    * ##Pipeline  
     * Declarative pipeline  
    * ##Github repo
